@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Screen.h"
 #include "Window_mgr.h"
 
 // Forward declaration
