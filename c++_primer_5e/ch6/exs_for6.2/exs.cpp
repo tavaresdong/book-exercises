@@ -23,7 +23,8 @@ void swap_ref(int& a, int &b)
 int sum_initlist(initializer_list<int> list)
 {
     int sum = 0;
-    for (auto val : list)
+    // Should use const auto& because elements in initializer_list are always const
+    for (const auto& val : list)
         sum += val;
     return sum;
 }
