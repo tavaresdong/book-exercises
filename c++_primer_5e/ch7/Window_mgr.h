@@ -13,6 +13,7 @@ public:
 
     Window_mgr();
     void clear(ScreenIndex);
+    ScreenIndex addScreen(const Screen& sc);
 };
 
 class Screen {
@@ -78,6 +79,12 @@ void Window_mgr::clear(ScreenIndex i)
 {
     Screen& s = screens[i];
     s.contents = std::string(s.height * s.width, ' ');
+}
+
+Window_mgr::ScreenIndex Window_mgr::addScreen(const Screen& sc)
+{
+    screens.push_back(sc);
+    return sc.size() - 1;
 }
 
 #endif
