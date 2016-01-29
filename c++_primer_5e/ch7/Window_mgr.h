@@ -35,6 +35,7 @@ public:
     char get(pos ht, pos wd) const;
     Screen& set(char);
     Screen& set(pos, pos, char);
+    pos size() const;
 
     Screen& move(pos r, pos c);
     Screen& display(std::ostream& os) { do_display(os); return *this; }
@@ -49,6 +50,11 @@ inline Screen& Screen::set(char c)
 {
     contents[cursor] = c;
     return *this;
+}
+
+inline Screen::pos Screen::size() const
+{
+    return height * width;
 }
 
 inline Screen& Screen::set(pos r, pos c, char rep)

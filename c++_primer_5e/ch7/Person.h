@@ -10,6 +10,7 @@ private:
 
 public:
     Person() = default;
+    explicit Person(std::string n, std::string a = "China") : name(n), address(a) {}
     Person(std::string n, std::string a) : name(n), address(a) {}
 
     const std::string& getAddress() const {return address;}
