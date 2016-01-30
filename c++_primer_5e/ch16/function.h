@@ -9,4 +9,14 @@ int compare(const T& v1, const T& v2)
     else return 0;
 }
 
+template <typename Iter, typename Value>
+bool find(Iter begin, Iter end, Value v)
+{
+    for (; begin != end; begin++) {
+        if (*begin == v) return true;
+    }
+
+    return false;
+}
+
 #endif
