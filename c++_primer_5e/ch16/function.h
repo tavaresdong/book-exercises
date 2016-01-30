@@ -1,5 +1,6 @@
 #ifndef _FUNCTION_H_
 #define _FUNCTION_H_
+#include <iostream>
 
 template <typename T>
 int compare(const T& v1, const T& v2)
@@ -17,6 +18,14 @@ bool find(Iter begin, Iter end, Value v)
     }
 
     return false;
+}
+
+template <typename T, unsigned Dim>
+void print(T (&arr)[Dim])
+{
+    for (auto &elem : arr)
+        std::cout << elem << " ";
+    std::cout << std::endl;
 }
 
 #endif
