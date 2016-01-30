@@ -4,6 +4,17 @@
 
 using namespace std;
 
+// Ex16.19
+template <typename T>
+void print(const vector<T>& vec)
+{
+    typename vector<T>::size_type beg = 0;
+    while (beg != vec.size()) {
+        cout << vec[beg];
+        ++beg;
+    } 
+}
+
 int main(int argc, char **argv)
 {
     std::string str1("good"), str2("day");
@@ -23,5 +34,10 @@ int main(int argc, char **argv)
         cout << *beg << " ";
         beg++;
     }
+    cout << endl;
+
+    cout << dimension(arr2) << endl;
+
+    print(arr2);
     return 0;
 }

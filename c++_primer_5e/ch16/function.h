@@ -40,4 +40,10 @@ T* my_end(T (&arr)[Dim])
     return &arr[Dim];
 }
 
+template <typename T, unsigned Dim>
+constexpr unsigned dimension(const T (&arr)[Dim])
+{
+    return Dim;
+}
+
 #endif
