@@ -28,4 +28,16 @@ void print(T (&arr)[Dim])
     std::cout << std::endl;
 }
 
+template <typename T, unsigned Dim>
+T* my_begin(T (&arr)[Dim])
+{
+    return &arr[0];
+}
+
+template <typename T, unsigned Dim>
+T* my_end(T (&arr)[Dim])
+{
+    return &arr[Dim];
+}
+
 #endif

@@ -17,5 +17,11 @@ int main(int argc, char **argv)
     string arr2[] = {"hello", "world"};
     print(arr1);
     print(arr2);
+
+    int *beg = my_begin(arr1), *ed = my_end(arr1);
+    while (beg != ed) {
+        cout << *beg << " ";
+        beg++;
+    }
     return 0;
 }
