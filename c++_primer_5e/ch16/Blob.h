@@ -2,7 +2,7 @@
 #define _BLOB_H_
 #include <vector>
 #include <initializer_list>
-#include <stderr>
+#include <stdexcept>
 #include <memory>
 
 template <typename T>
@@ -13,6 +13,9 @@ public:
 
     Blob();
     Blob(std::initializer_list<T> il);
+
+    template <typename Iter>
+    Blob(Iter beg, Iter ed);
 
     size_type size() const { return data->size(); }
     bool empty() const { return data->empty(); } 
@@ -41,16 +44,20 @@ void Blob<T>::check(size_type i, const std::string &msg) const
 }
 
 template <typename T>
-Blob<T>::Blob() data(std::make_shared<std::vector<T>>()) {}
+template <typename Iter>
+Blob<T>::Blob(Iter bg, Iter ed) : data(std::make_shared<std::vector<T>>(bg, ed)) {}
 
 template <typename T>
-Blob<T>::Blob(std::initializer_list<T> il) data(std::make_shared<std::vector<T>(il)) {}
+Blob<T>::Blob() : data(std::make_shared<std::vector<T>>()) {}
+
+template <typename T>
+Blob<T>::Blob(std::initializer_list<T> il) : data(std::make_shared<std::vector<T>>(il)) {}
 
 template <typename T>
 T& Blob<T>::front()
 {
     check(0, "Front on empty Blob");
-    returen data->front();
+    return data->front();
 }
 
 template <typename T>
@@ -81,11 +88,5 @@ T& Blob<T>::operator[] (size_type i)
     return (*data)[i];
 }
 
-template <typename T>
-void Blob<T>::pop_back()
-{
-    check(0, "Pop on empty Blob");
-    data->pop_back();
-}
 
 #endif
