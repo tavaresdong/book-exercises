@@ -19,17 +19,18 @@ void biggies(vector<string> &words,
 
     //auto bigger = find_if(words.begin(), words.end(), 
     //                [sz] (const string& str) { return str.size() >= sz; });
-    auto bigger = partition(words.begin(), words.end(),
+    sort(words.begin(), words.end(),
+                    [] (const string& str1, const string& str2)
+                    { return str1.size() < str2.size(); });
+    auto bigger = stable_partition(words.begin(), words.end(),
                     [sz] (const string& str) { return str.size() >= sz; });
 
     auto count = bigger - words.begin();
     cout << count << make_plural(count, "word", "s") << "of length " << sz
          << " or longer" << endl;
 
-    stable_sort(words.begin(), bigger,
-                    [] (const string& str1, const string& str2)
-                    { return str1.size() < str2.size(); });
-    for_each(words.begin(), bigger, [] (const string& str) { cout << str << endl;});
+    for_each(words.begin(), bigger, 
+                    [] (const string& str) { cout << str << endl;});
 }
 
 int main(int argc, char **argv) {
