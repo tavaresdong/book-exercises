@@ -16,7 +16,9 @@ public:
     std::vector<std::string>::iterator begin() { return data->begin(); }
     std::vector<std::string>::iterator end() { return data->end(); }
     std::string& front();
+    const std::string& front() const;
     std::string& back();
+    const std::string& back() const;
 private:
     std::shared_ptr<std::vector<std::string>> data;
     void check(size_type i, const std::string &msg) const;

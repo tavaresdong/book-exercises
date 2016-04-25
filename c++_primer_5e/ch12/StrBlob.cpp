@@ -21,7 +21,17 @@ string& StrBlob::front() {
     return data->front();
 }
 
+const string& StrBlob::front() const {
+    check(0, "front on empty StrBlob");
+    return data->front();
+}
+
 string& StrBlob::back() {
+    check(0, "back on empty StrBlob");
+    return data->back();
+}
+
+const string& StrBlob::back() const {
     check(0, "back on empty StrBlob");
     return data->back();
 }
