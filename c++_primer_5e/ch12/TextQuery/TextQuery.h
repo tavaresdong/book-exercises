@@ -23,9 +23,13 @@ class QueryResult {
    friend std::ostream& print(std::ostream&, const QueryResult&);
 public:
     using lineno = TextQuery::lineno;
+    using ResIter = std::set<lineno>::iterator;
     QueryResult(std::string st, std::shared_ptr<std::set<lineno>> lns,
                 std::shared_ptr<std::vector<std::string>> ls) : 
             sought(st), linenos(lns), lines(ls) { }
+    ResIter begin() { return linenos->begin(); }
+    ResIter end() { return linenos->end(); }
+    std::shared_ptr<std::vector<std::string>> get_file() { return lines; }
 private:
     std::string sought;
     std::shared_ptr<std::set<lineno>> linenos;
