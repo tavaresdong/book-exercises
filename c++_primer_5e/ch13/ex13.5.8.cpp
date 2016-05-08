@@ -11,6 +11,7 @@ public:
         ps = new std::string(*rh.ps);
         i = rh.i;
     }
+    ~HasPtr() { delete ps; }
 private:
     std::string *ps;
     int i;
