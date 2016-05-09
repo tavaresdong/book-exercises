@@ -7,9 +7,11 @@ public:
     void setPs(std::string* nps) { delete ps; ps = nps; }
     void print() { std::cout << *ps << " " << i << std::endl; }
     HasPtr& operator=(HasPtr& rh) {
+        auto newp = new std::string(*rh.ps);
         delete ps;
-        ps = new std::string(*rh.ps);
+        ps = newp;
         i = rh.i;
+        return *this;
     }
     ~HasPtr() { delete ps; }
 private:
