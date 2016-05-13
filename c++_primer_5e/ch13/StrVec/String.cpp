@@ -26,3 +26,36 @@ std::ostream& operator << (std::ostream& out, const String &str)
         [&out](const char& c) { out << c; });
     return out;
 }
+
+String::String(const String& str)
+{
+    std::cout << "Copying a String" << std::endl;
+    auto beg = alloc.allocate(str.size());
+    std::strncpy(beg, str.first, str.size());
+    first = beg;
+    last = beg + str.size();
+}
+
+String& String::operator=(const String& str)
+{
+    std::cout << "assignment operator of String called" << std::endl;
+    auto beg = alloc.allocate(str.size());
+    std::strncpy(beg, str.first, str.size());
+    free();
+    first = beg;
+    last = beg + str.size();
+    return *this;
+}
+
+void String::free()
+{
+    // Maybe not necessary
+    std::for_each(first, last,
+        [this] (char &c) { alloc.destroy(&c); });
+    alloc.deallocate(first, last - first);
+}
+
+String::~String()
+{
+    free();
+}
