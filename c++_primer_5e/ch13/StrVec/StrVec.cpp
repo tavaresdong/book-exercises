@@ -37,6 +37,25 @@ StrVec::StrVec(const StrVec &s)
     first_free = cap = pr.second;
 }
 
+StrVec& StrVec::operator=(StrVec &&rh) noexcept
+{
+    if (this != &rh)
+    {
+        free();
+        elements = rh.elements;
+        first_free = rh.first_free;
+        cap = rh.cap;
+        rh.elements = rh.first_free = rh.cap = nullptr;
+    }
+    return *this;
+}
+
+StrVec::StrVec(StrVec &&rh) noexcept 
+  : elements(rh.first), first_free(rh.first), cap(fh.cap);
+{
+    rh.first = rh.first = rh.cap = nullptr;
+}
+
 StrVec& StrVec::operator=(const StrVec &s)
 {
     auto pr = alloc_n_copy(s.begin(), s.end());
