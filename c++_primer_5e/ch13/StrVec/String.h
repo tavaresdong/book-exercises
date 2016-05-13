@@ -14,6 +14,8 @@ public:
     // Copy Control
     String(const String&);
     String& operator=(const String&);
+    String(String &&) noexcept;
+    String& operator=(String &&) noexcept;
     ~String();
 private:
     std::allocator<char> alloc;

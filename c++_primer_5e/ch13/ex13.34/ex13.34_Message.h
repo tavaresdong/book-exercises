@@ -15,6 +15,8 @@ public:
     // Copy Control
     Message(const Message&);
     Message& operator=(const Message&);
+    Message(Message &&);
+    Message& operator=(Message &&);
     ~Message();
 
     // add/remove this message from the specified folder's set of messages
@@ -29,6 +31,7 @@ private:
     // add this message to the folders that point to the parameter
     void add_to_Folders(const Message&);
     void remove_from_Folders();
+    void move_Folders(Message *m);
 };
 
 class Folder {

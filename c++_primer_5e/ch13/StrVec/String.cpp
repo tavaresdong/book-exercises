@@ -59,3 +59,25 @@ String::~String()
 {
     free();
 }
+
+String::String(String &&rh) noexcept
+  : first(rh.first), last(rh.last)
+{
+    std::cout << "Move Constructor for String" << std::endl;
+    rh.first = rh.last = nullptr;
+}
+
+
+String& String::operator=(String &&rh) noexcept
+{
+    std::cout << "Move Assignment for String" << std::endl;
+    if (this != &rh)
+    {
+        free();
+        first = rh.first;
+        last = rh.last;
+        rh.first = rh.last = nullptr;
+    }
+    return *this;
+}
+

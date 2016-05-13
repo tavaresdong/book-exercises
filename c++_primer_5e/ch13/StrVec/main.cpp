@@ -15,12 +15,16 @@ int main(int argc, char **argv)
     // std::cout << str.size() << " " << str << std::endl;
     // std::cout << str2.size() << " " << str2 << std::endl;
 
-    std::vector<String> vec;
-    String str("job"), str2("hi");
-    // this will call copy constructor twice
-    vec.push_back(String("good"));
-    vec.push_back(str);
+    // std::vector<String> vec;
+    // String str("job"), str2("hi");
+    // // this will call copy constructor twice
+    // vec.push_back(String("good"));
+    // vec.push_back(str);
 
-    str = str2;
+    // str = str2;
+    String str("day");
+    String str2 = std::move(str);
+    String str3("bad");
+    str = std::move(str3);
     return 0;
 }

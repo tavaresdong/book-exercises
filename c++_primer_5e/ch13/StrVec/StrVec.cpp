@@ -51,9 +51,9 @@ StrVec& StrVec::operator=(StrVec &&rh) noexcept
 }
 
 StrVec::StrVec(StrVec &&rh) noexcept 
-  : elements(rh.first), first_free(rh.first), cap(fh.cap);
+  : elements(rh.elements), first_free(rh.first_free), cap(rh.cap)
 {
-    rh.first = rh.first = rh.cap = nullptr;
+    rh.elements = rh.first_free = rh.cap = nullptr;
 }
 
 StrVec& StrVec::operator=(const StrVec &s)
