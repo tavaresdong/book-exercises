@@ -46,6 +46,31 @@ public:
                 "discount: " << discount << std::endl; }
 };
 
+class Limit_quote : public Disc_quote {
+public:
+    Limit_quote() = default;
+    Limit_quote(const std::string& book, double p, std::size_t qty, double disc, std::size_t lmt) :
+                Disc_quote(book, p, qty, disc), limit(lmt) { }
+
+    double net_price(std::size_t cnt) const override
+    {
+        if (cnt < quantity) {
+            return price * cnt;
+        } else if (cnt < limit) {
+            return price * (1 - discount) * cnt;
+        } else {
+            return price * limit * (1 - discount) + (cnt - limit) * price;
+        }
+    }
+
+    void debug() const 
+    {
+        std::cout << "Limit_quote" << std::endl;
+    }
+private:
+    std::size_t limit;
+};
+
 
 double print_total(std::ostream &os,
                    const Quote &item, size_t n);
